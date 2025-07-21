@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://localhost:5173', 'https://art-loop-frontend.vercel.app'],
+  origin: ['http://localhost:8080', 'http://localhost:5173', 'https://art-loop-frontend.vercel.app','https://fra.cloud.appwrite.io/v1/account'],
   exposedHeaders: ['x-guest-id'],
 }));
 
