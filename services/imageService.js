@@ -5,10 +5,10 @@ async function generateFinalImage(finalPrompt) {
   
   try {
     const response = await openrouter.images.generate({ 
-      model: "stability-ai/stable-diffusion-xl-base-1.0", // Using a common OpenRouter image model
+      model: "dall-e-3", // Using DALL-E 3 for image generation
       prompt: finalPrompt, 
       n: 1, 
-      size: "1024x1024" // Common size for image generation
+      size: "1024x1024" // DALL-E 3 supports 1024x1024, 1024x1792, 1792x1024
     });
     
     const imageUrl = response.data?.[0]?.url;
