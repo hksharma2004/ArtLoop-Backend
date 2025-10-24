@@ -1,20 +1,20 @@
-const { together } = require('../config/ai');
+const { openrouter } = require('../config/ai');
 
 async function generateFinalImage(finalPrompt) {
   console.log('Generating final image...');
   
   try {
-    const response = await together.images.create({ 
-      model: "black-forest-labs/FLUX.1-schnell-Free", 
+    const response = await openrouter.images.generate({ 
+      model: "stability-ai/stable-diffusion-xl-base-1.0", // Using a common OpenRouter image model
       prompt: finalPrompt, 
       n: 1, 
-      steps: 4 
+      size: "1024x1024" // Common size for image generation
     });
     
     const imageUrl = response.data?.[0]?.url;
     
     if (imageUrl) {
-      console.log(' Together AI image URL received.');
+      console.log(' OpenRouter AI image URL received.');
       return imageUrl;
     }
     

@@ -1,7 +1,10 @@
 const vision = require('@google-cloud/vision');
-const Together = require('together-ai');
+const OpenAI = require('openai');
 
-const together = new Together({ apiKey: process.env.TOGETHER_AI_API_KEY });
+const openrouter = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY,
+});
 const visionClient = new vision.ImageAnnotatorClient({ 
   keyFilename: 'artloop-466212-6e252fad9d85.json' 
 });
@@ -16,7 +19,7 @@ const STYLES = {
 };
 
 module.exports = {
-  together,
+  openrouter,
   visionClient,
   STYLES
 };
