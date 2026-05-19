@@ -25,7 +25,7 @@ app.use('/api/generate', generateRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log('Google Cloud Vision API ready.');
-  console.log('Together AI image generation ready.');
+  console.log('Gemini image generation ready.');
 });
 
 module.exports = app;

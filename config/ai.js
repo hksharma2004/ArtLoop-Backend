@@ -1,13 +1,11 @@
 const vision = require('@google-cloud/vision');
-const OpenAI = require('openai');
 
-const openrouter = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
-});
 const visionClient = new vision.ImageAnnotatorClient({ 
-  keyFilename: 'artloop-466212-6e252fad9d85.json' 
+  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS || 'artloop-466212-6e252fad9d85.json' 
 });
+
+const GEMINI_API_BASE_URL = 'https://generativelanguage.googleapis.com/v1beta';
+const GEMINI_IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 
 const STYLES = {
   realistic: 'photorealistic, high quality, detailed, 8k resolution',
@@ -19,7 +17,8 @@ const STYLES = {
 };
 
 module.exports = {
-  openrouter,
   visionClient,
+  GEMINI_API_BASE_URL,
+  GEMINI_IMAGE_MODEL,
   STYLES
 };

@@ -18,13 +18,13 @@ Backend service for ArtLoop - that transforms hand-drawn sketches into stunning 
 
 ## Overview
 
-ArtLoop Backend is the server-side component of the ArtLoop application. It provides RESTful APIs for user authentication, sketch analysis, and AI-powered image generation. The service integrates with Google Cloud Vision for image analysis and Together AI for image generation.
+ArtLoop Backend is the server-side component of the ArtLoop application. It provides RESTful APIs for user authentication, sketch analysis, and AI-powered image generation. The service integrates with Google Cloud Vision for image analysis and Gemini for image generation.
 
 ## Features
 
 - User authentication (registration and login)
 - Sketch analysis using Google Cloud Vision API
-- AI-powered image generation using Together AI
+- AI-powered image generation using Gemini
 - Credit-based usage system
 - Multiple artistic style presets
 - Secure JWT-based authentication
@@ -36,7 +36,7 @@ ArtLoop Backend is the server-side component of the ArtLoop application. It prov
 - **Authentication**: JWT (JSON Web Tokens)
 - **Database**: Appwrite
 - **Image Analysis**: Google Cloud Vision API
-- **Image Generation**: Together AI
+- **Image Generation**: Gemini
 - **CORS**: Enabled for specific origins
 
 ## Architecture
@@ -103,11 +103,12 @@ VITE_APPWRITE_API_KEY=your_appwrite_api_key
 VITE_APPWRITE_DATABASE_ID=your_appwrite_database_id
 VITE_APPWRITE_USERS_COLLECTION_ID=your_users_collection_id
 
-# Together AI Configuration
-TOGETHER_AI_API_KEY=your_together_ai_api_key
+# Gemini Configuration
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_IMAGE_MODEL=gemini-2.5-flash-image
 
-# Google Cloud Vision (key file should be in root)
-# artloop-466212-6e252fad9d85.json
+# Google Cloud Vision
+GOOGLE_APPLICATION_CREDENTIALS=artloop-466212-6e252fad9d85.json
 ```
 
 ## Project Structure
@@ -121,7 +122,7 @@ artloop-backend/
 │   └── auth.js        # Authentication middleware
 ├── routes/
 │   ├── auth.js        # Authentication routes
-│   ├── generate.js    # Image generation routes
+│   └── generate.js    # Image generation routes
 ├── services/
 │   ├── imageService.js # Image generation service
 │   └── visionService.js # Image analysis service
@@ -142,9 +143,9 @@ The application uses Google Cloud Vision API for analyzing user sketches. The se
 - Web detection
 - Label detection
 
-### Together AI Integration
+### Gemini Integration
 
-ArtLoop uses Together AI's FLUX.1-schnell-Free model for generating final artwork from analyzed sketches. Users can select from multiple artistic styles:
+ArtLoop uses Gemini's `gemini-2.5-flash-image` model for generating final artwork from analyzed sketches. Users can select from multiple artistic styles:
 - Realistic
 - Anime
 - Cartoon
